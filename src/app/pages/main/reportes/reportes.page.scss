@@ -1,0 +1,68 @@
+/* Estilo para el encabezado */
+ion-toolbar {
+  --background: #F29F05; /* Mantén el color vibrante */
+  color: white;
+}
+
+ion-title {
+  font-size: 1.4rem;
+  font-weight: bold;
+}
+
+/* Botón de retroceso */
+ion-button[slot="icon-only"] {
+  --color: white;
+  --ripple-color: rgba(255, 255, 255, 0.3);
+}
+
+/* Botón de descarga */
+.btn-download {
+  padding: 16px;
+  text-align: center;
+}
+
+ion-button[color="tertiary"] {
+  --background: #4CAF50; /* Color verde para destacar el botón */
+  --background-hover: #45A049;
+  --color: white;
+  border-radius: 8px;
+  font-size: 1rem;
+  font-weight: 500;
+}
+
+/* Títulos de las secciones */
+h2 {
+  color: #333; /* Color de texto neutro */
+  font-size: 1.2rem;
+  font-weight: bold;
+  text-align: center;
+  margin-top: 16px;
+  margin-bottom: 8px;
+}
+
+/* Contenedor de iframes */
+.iframe-wrapper {
+  width: 100%;  /* Ocupa el 100% del ancho disponible */
+  height: 40vh; /* 40% de la altura de la ventana */
+  display: flex;
+  justify-content: center; /* Centra el contenido horizontalmente */
+  align-items: center; /* Centra el contenido verticalmente */
+  border: 1px solid #ddd; /* Borde suave */
+  border-radius: 8px;  /* Bordes redondeados */
+  overflow: hidden;   /* Evita que el contenido se desborde */
+  margin: 16px 0;     /* Margen para separar los iframes */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Sombra para profundidad */
+  background: #f9f9f9; /* Fondo neutro */
+}
+
+iframe {
+  width: 100%;  /* El iframe ocupa todo el ancho del contenedor */
+  height: 100%; /* El iframe ocupa todo el alto del contenedor */
+  border: none; /* Elimina el borde del iframe */
+}
+
+/* Espaciado adicional */
+ion-content {
+  --padding-top: 16px;
+  --padding-bottom: 16px;
+}

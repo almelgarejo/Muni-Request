@@ -1,0 +1,7 @@
+{
+  "name": "Muni-Request",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "angular"
+}

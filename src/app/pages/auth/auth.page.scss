@@ -1,0 +1,62 @@
+/* Estilos del contenedor general */
+ion-content {
+    --background: #161f75;
+    padding-bottom: 0px; /* Para eliminar el espacio en blanco innecesario debajo */
+    
+    #header {
+      height: 53%;
+      background: #fdc151;
+      border-radius: 0 0 20px 20px;
+      display: flex;
+      flex-direction: column;
+      color: #fff;
+      padding: 20px;
+    }
+
+    .form-wrapper{
+      box-shadow: none;
+      border-radius: 20px;
+      padding: 15px 10px;
+
+      ion-item{
+        --background: #E6F0FF;
+        --padding-start: 10px;
+        --highlight-height: 0;
+        --border-width: 0;
+        --padding-top: 0;
+        margin-bottom: 15px;
+        border-radius: 5px;
+      }
+    }
+
+  }
+
+  .submit {
+    --background: #161f75 ;
+    --color: #ffffff; /* Optionally set text/icon color to black for contrast */
+  }
+  
+
+  .ion-text-end{
+    color: rgb(255, 255, 255);
+  }
+
+  
+  /* Estilos de los iconos */
+  ion-icon {
+    color: black; /* Iconos visibles en negro */
+  }
+  .icon-black ion-icon {
+    color: black; /* Cambia el color del icono a negro */
+  }
+  
+  
+  .auth-form {
+    padding: 20px;
+     /* Fondo azul oscuro */
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Sombra ligera */
+  }
+
+
+  

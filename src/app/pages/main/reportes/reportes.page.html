@@ -1,0 +1,35 @@
+<ion-header>
+  <ion-toolbar style="--background: #F29F05;">
+    <ion-buttons slot="start">
+      <ion-button (click)="volverAtras()">
+        <ion-icon slot="icon-only" name="arrow-back" style="color: white;"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+    <ion-title class="text-center" style="color: white;">Reportes</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <div class="btn-download">
+    <ion-button expand="block" color="tertiary" (click)="descargarExcel()">
+      Descargar Reporte en Excel
+    </ion-button>
+  </div>
+
+  <h2>Estado de las solicitudes</h2>
+  <div class="iframe-wrapper" (click)="abrirModal('https://docs.google.com/spreadsheets/d/e/2PACX-1vRrR5lgIFHtb8ZPnki-vxIi3JyEc32rJN-jy7QH8DYUQkWUVvZhQ0fMpCj1yi0Zg8BmNH1esrcfcV44/pubchart?oid=1328505889&format=interactive')">
+    <iframe 
+      src="https://docs.google.com/spreadsheets/d/e/2PACX-1vRrR5lgIFHtb8ZPnki-vxIi3JyEc32rJN-jy7QH8DYUQkWUVvZhQ0fMpCj1yi0Zg8BmNH1esrcfcV44/pubchart?oid=1328505889&format=interactive" 
+      allowfullscreen>
+    </iframe>
+  </div>
+
+  <h2>Solicitudes por departamento</h2>
+  <div style="height: 4dvh;"></div>
+  <div class="iframe-wrapper" (click)="abrirModal('https://docs.google.com/spreadsheets/d/e/2PACX-1vRrR5lgIFHtb8ZPnki-vxIi3JyEc32rJN-jy7QH8DYUQkWUVvZhQ0fMpCj1yi0Zg8BmNH1esrcfcV44/pubchart?oid=1826296711&format=interactive')">
+    <iframe 
+      src="https://docs.google.com/spreadsheets/d/e/2PACX-1vRrR5lgIFHtb8ZPnki-vxIi3JyEc32rJN-jy7QH8DYUQkWUVvZhQ0fMpCj1yi0Zg8BmNH1esrcfcV44/pubchart?oid=1826296711&format=interactive" 
+      allowfullscreen>
+    </iframe>
+  </div>
+</ion-content>

@@ -1,0 +1,26 @@
+ion-content {
+    --background: #c3fcf2;
+    padding-bottom: 0px; /* Para eliminar el espacio en blanco innecesario debajo */
+
+    .form-wrapper{
+      box-shadow: none;
+      border-radius: 20px;
+      padding: 15px 10px;
+
+      ion-item{
+        --background: #E6F0FF;
+        --padding-start: 10px;
+        --highlight-height: 0;
+        --border-width: 0;
+        --padding-top: 0;
+        margin-bottom: 15px;
+        border-radius: 5px;
+      }
+    }
+
+  }
+
+  .submit {
+    --background: #006370 ;
+    --color: #ffffff; /* Optionally set text/icon color to black for contrast */
+  }

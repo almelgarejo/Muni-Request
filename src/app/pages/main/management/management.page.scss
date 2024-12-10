@@ -1,0 +1,233 @@
+/* Contenedor principal */
+.container {
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #f5f5f5;
+  font-family: 'Arial', sans-serif;
+}
+
+/* Formulario centrado */
+.form-container {
+  width: 100%;
+  max-width: 400px;
+  padding: 20px;
+  background: white;
+  border-radius: 12px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  text-align: center;
+}
+
+h2 {
+  font-size: 1.8em;
+  margin-bottom: 20px;
+  color: #333;
+  border-bottom: 2px solid #007bff;
+  padding-bottom: 10px;
+}
+
+/* Estilo para los campos del formulario */
+.input-row {
+  margin-bottom: 16px;
+  text-align: left;
+}
+
+.input-row label {
+  font-size: 0.9em;
+  font-weight: bold;
+  color: #555;
+  margin-bottom: 8px;
+}
+
+input[type="text"],
+input[type="password"],
+select {
+  width: 100%;
+  padding: 12px;
+  font-size: 1em;
+  border: 1px solid #ddd;
+  border-radius: 6px;
+  background-color: #f9f9f9;
+  transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+input:focus {
+  border-color: #007bff;
+  box-shadow: 0 0 8px rgba(0, 123, 255, 0.25);
+}
+
+/* Contenedor de contraseña con ícono */
+.password-container {
+  position: relative;
+}
+
+.password-container input {
+  padding-right: 40px; /* Espacio para el ícono */
+}
+
+.toggle-password-icon {
+  position: absolute;
+  right: 10px;
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: 1.2em;
+  color: #007bff;
+  cursor: pointer;
+  transition: color 0.3s;
+}
+
+.toggle-password-icon:hover {
+  color: #0056b3;
+}
+
+/* Botón Generar Contraseña */
+.btn-generate {
+  font-size: 0.8em;
+  padding: 6px 12px;
+  background-color: #ffc107;
+  color: #333;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  margin-top: 10px;
+  transition: background-color 0.3s;
+}
+
+.btn-generate:hover {
+  background-color: #e0a800;
+}
+
+/* Botón Crear Usuario */
+.btn-create {
+  font-size: 1em;
+  padding: 10px 16px;
+  background-color: #28a745;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.btn-create:hover {
+  background-color: #218838;
+}
+
+/* Validadores */
+.validators {
+  color: #dc3545;
+  font-size: 0.8em;
+}
+
+/* Contenedor general para usuarios */
+.user-section {
+  margin-bottom: 24px;
+  padding: 16px;
+  border: 1px solid #ddd;
+  border-radius: 12px;
+  background-color: #fff;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.user-section h2 {
+  font-size: 1.5em;
+  color: #333;
+  margin-bottom: 16px;
+  text-align: center;
+  border-bottom: 2px solid #007bff;
+  padding-bottom: 8px;
+}
+
+/* Lista de usuarios */
+.user-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.user-list li {
+  padding: 16px;
+  border: 1px solid #eee;
+  border-radius: 8px;
+  margin-bottom: 12px;
+  background-color: #f9f9f9;
+  transition: background-color 0.3s, box-shadow 0.3s;
+}
+
+.user-list li:hover {
+  background-color: #fff;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+/* Información del usuario */
+.user-info {
+  margin-bottom: 12px;
+}
+
+.user-info .user-name {
+  display: block;
+  font-weight: bold;
+  font-size: 1.1em;
+  color: #333;
+  margin-bottom: 4px;
+}
+
+.user-info .user-email {
+  display: block;
+  font-size: 0.9em;
+  color: #666;
+}
+
+/* Botones de acciones */
+.user-actions {
+  display: flex;
+  gap: 8px;
+}
+
+button.modify-btn,
+button.delete-btn {
+  padding: 8px 16px;
+  font-size: 0.9em;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: background-color 0.3s, transform 0.2s;
+}
+
+button.modify-btn {
+  background-color: #007bff;
+  color: #fff;
+}
+
+button.modify-btn:hover {
+  background-color: #0056b3;
+  transform: scale(1.05);
+}
+
+button.delete-btn {
+  background-color: #dc3545;
+  color: #fff;
+}
+
+button.delete-btn:hover {
+  background-color: #c82333;
+  transform: scale(1.05);
+}
+
+/* Botón Guardar Cambios */
+.btn-save {
+  padding: 10px 16px;
+  font-size: 1em;
+  background-color: #28a745;
+  color: #fff;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background-color 0.3s, transform 0.2s;
+}
+
+.btn-save:hover {
+  background-color: #218838;
+  transform: scale(1.05);
+}

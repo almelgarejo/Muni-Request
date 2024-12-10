@@ -1,0 +1,59 @@
+<app-header title="Login"></app-header>
+<ion-content>
+  <div id="header">
+    <form [formGroup]="form" (ngSubmit)="submit()" (keypress.enter)="submit()">
+      <img src="assets\icon\logo.png" class="centrar-imagen" />
+      <div style="height: 30px;"></div>
+
+      <!-- Email -->
+      <div class="wrapper">
+        <ion-card class="form-wrapper">
+          <div style="height: 15px;"></div>
+          <app-custom
+            autocomplete="email"
+            icon="mail-outline"
+            [control]="form.controls.email"
+            type="email"
+            label="Correo"
+          ></app-custom>
+
+          <div class="validators" *ngIf="form.controls.email.errors && form.controls.email.touched">
+            <div style="height: 20px;"></div>
+            <div *ngIf="form.controls.email.errors?.['required']">El correo es requerido</div>
+            <div *ngIf="form.controls.email.errors?.['email']">Ingrese un correo valido</div>
+          </div>
+
+          <div style="height: 30px;"></div>
+
+          <!-- Contraseña -->
+          <app-custom
+            [control]="form.controls.password"
+            icon="lock-closed-outline"
+            type="password"
+            label="Contraseña"
+          ></app-custom>
+
+          <div class="validators" *ngIf="form.controls.password.errors && form.controls.password.touched">
+            <div style="height: 20px;"></div>
+            <div *ngIf="form.controls.password.errors?.['required']">La contraseña es requerida</div>
+          </div>
+
+          <div style="height: 15px;"></div>
+
+          <ion-button expand="block" mode="ios" class="submit" type="submit" [disabled]="form.invalid">
+            Ingresar
+            <ion-icon slot="end" name="log-in-outline"></ion-icon>
+          </ion-button>
+          <div style="height: 30px;"></div>
+          
+        </ion-card>
+      </div>
+
+      <div style="height: 15px;"></div>
+      <p routerLink="recuperar" class="ion-text-end">¿Olvido su contraseña?</p>
+      <div style="height: 15px;"></div>
+
+      
+    </form>
+  </div>
+</ion-content>

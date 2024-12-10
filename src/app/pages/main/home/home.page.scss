@@ -1,0 +1,84 @@
+/* Fondo con imagen */
+ion-content {
+  --background: none;
+  background-image: url('/assets/imgs/zapallar.jpg');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  padding: 16px;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  z-index: 1; /* Asegura que ion-content esté por debajo del contenido */
+}
+
+/* Capa de superposición para mejorar la visibilidad del contenido */
+ion-content::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(255, 255, 255, 0.7);
+  pointer-events: none; /* Permite hacer clic en el contenido debajo */
+}
+
+/* Contenido principal */
+h2, ion-card, .custom-fab-button {
+  position: relative;
+  z-index: 2;
+}
+
+/* Resto de estilos */
+
+h2 {
+  font-size: 1.4rem;
+  color: #444;
+  font-weight: 600;
+  margin: 16px 0;
+  padding-left: 12px;
+  border-left: 5px solid #FF9900;
+  letter-spacing: 0.5px;
+}
+
+ion-card {
+  box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.15);
+  border-radius: 15px;
+  margin: 0 auto;
+  width: 92%;
+  background-color: white;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+ion-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0px 12px 24px rgba(0, 0, 0, 0.25);
+}
+
+ion-card-header {
+  background: linear-gradient(to right, #FF9900, #FFB347);
+  color: white;
+  border-radius: 15px 15px 0 0;
+  padding: 16px;
+}
+
+.custom-fab-button {
+  --background: linear-gradient(45deg, #FF9900, #FF5E62);
+  --color: white;
+  --box-shadow: 0px 4px 12px rgba(255, 94, 98, 0.6);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.custom-fab-button:hover {
+  transform: scale(1.1);
+  --background: linear-gradient(45deg, #FF7A29, #FF2E4E);
+  --box-shadow: 0px 6px 16px rgba(255, 94, 98, 0.8);
+}
+
+.small-img {
+  width: 150px; /* Ajusta el ancho */
+  height: auto; /* Mantén las proporciones */
+  margin: 0 auto; /* Centra la imagen */
+  display: block;
+}

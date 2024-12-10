@@ -1,0 +1,153 @@
+<ion-header>
+  <ion-toolbar style="--background: #f29f05">
+    <ion-buttons slot="start">
+      <ion-button (click)="irAHome()" style="padding: 0; margin-left: 10px">
+        <ion-icon slot="icon-only" name="arrow-back-outline" style="color: white"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+    <ion-title class="text-center" style="color: white">Solicitudes Registradas</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="ion-padding">
+  <!-- Botón para mostrar/ocultar filtros -->
+  <div class="filter-button-container">
+    <ion-button expand="block" (click)="toggleFiltros()">
+      <ion-icon name="funnel-outline" slot="start"></ion-icon>
+      Filtros
+    </ion-button>
+  </div>
+
+  <!-- Opciones de filtros dinámicas -->
+  <div *ngIf="mostrarFiltros" class="filtro-opciones">
+    <!-- Filtro de Localidad -->
+    <ion-item>
+      <ion-label>Localidad</ion-label>
+      <ion-select [(ngModel)]="filtroLocalidad" placeholder="Selecciona localidad" (ionChange)="filtrarSolicitudes()">
+        <ion-select-option *ngFor="let localidad of localidades">{{ localidad }}</ion-select-option>
+      </ion-select>
+    </ion-item>
+
+    <!-- Ordenar por Fecha de Creación -->
+    <ion-item>
+      <ion-label>Ordenar por Fecha de Creación</ion-label>
+      <ion-select [(ngModel)]="criterioOrden" placeholder="Selecciona orden" (ionChange)="filtrarSolicitudes()">
+        <ion-select-option value="creacionAsc">Más antiguo</ion-select-option>
+        <ion-select-option value="creacionDesc">Más reciente</ion-select-option>
+      </ion-select>
+    </ion-item>
+
+    <!-- Filtro de Estado -->
+    <ion-item>
+      <ion-label>Estado</ion-label>
+      <ion-select [(ngModel)]="filtroEstado" placeholder="Selecciona estado" (ionChange)="filtrarSolicitudes()">
+        <ion-select-option value="Pendiente">Pendiente</ion-select-option>
+        <ion-select-option value="En curso">En curso</ion-select-option>
+        <ion-select-option value="Finalizada">Finalizada</ion-select-option>
+      </ion-select>
+    </ion-item>
+  </div>
+
+ <!-- Filtro por Fecha: visible solo cuando se hace clic en "Filtrar por fecha" -->
+ <div *ngIf="mostrarFechaFiltro" class="fecha-filtro">
+  <ion-item>
+    <ion-label position="floating">Fecha Inicio</ion-label>
+    <ion-input [(ngModel)]="fechaInicio" type="date" placeholder="YYYY-MM-DD"></ion-input>
+  </ion-item>
+
+  <ion-item>
+    <ion-label position="floating">Fecha Fin</ion-label>
+    <ion-input [(ngModel)]="fechaFin" type="date" placeholder="YYYY-MM-DD"></ion-input>
+  </ion-item>
+
+  <ion-button expand="full" (click)="filtrarPorFecha()">Filtrar</ion-button>
+</div>
+
+  <!-- Botón para limpiar filtros -->
+  <ion-button expand="full" color="light" (click)="limpiarFiltros()">
+    Limpiar Filtros
+  </ion-button>
+
+  <!-- Lista de Solicitudes -->
+  <ion-list>
+    <ion-item
+    *ngFor="let solicitud of solicitudesFiltradas"
+    [ngClass]="{
+      'prioridad-alta': solicitud.prioridad === 'Importante',
+      'prioridad-media': solicitud.prioridad === 'Medio',
+      'prioridad-baja': solicitud.prioridad === 'Bajo',
+      'sin-prioridad': !solicitud.prioridad || solicitud.prioridad === 'Sin prioridad asignada'
+    }"
+  >
+    <ion-label>
+      <h2>{{ solicitud.nombre || 'Usuario no especificado' }}</h2>
+      <p><strong>Localidad:</strong> {{ solicitud.localidad || 'No especificada' }}</p>
+      <p><strong>Prioridad:</strong> {{ solicitud.prioridad || 'Sin prioridad asignada' }}</p>
+      <p><strong>Estado:</strong> {{ solicitud.estado || 'Sin estado' }}</p>
+    </ion-label>
+    <ion-button
+      class="boton-detalles"
+      slot="end"
+      (click)="mostrarDetalles(solicitud)"
+    >
+      Detalles
+    </ion-button>
+  </ion-item>
+
+  <!-- Detalles de la Solicitud -->
+  <ion-modal *ngIf="solicitudSeleccionada" [isOpen]="isModalOpen" (willDismiss)="cerrarDetalles()">
+    <ng-template>
+      <ion-header>
+        <ion-toolbar style="--background: #FFD700;">
+          <ion-title>Detalles de la Solicitud</ion-title>
+          <ion-buttons slot="end">
+            <ion-button (click)="cerrarDetalles()">Cerrar</ion-button>
+          </ion-buttons>
+        </ion-toolbar>
+      </ion-header>
+      
+      <ion-content>
+        <ion-card [ngClass]="getPriorityClass(solicitudSeleccionada.prioridad)">
+          <ion-card-header>
+            <ion-card-title>{{ solicitudSeleccionada?.nombre }}</ion-card-title>
+          </ion-card-header>
+          <ion-card-content>
+            <p><strong>Descripción:</strong> {{ solicitudSeleccionada?.descripcion }}</p>
+            <p><strong>Fecha:</strong> {{ solicitudSeleccionada?.fecha.toDate() | date:'short' }}</p>
+            <p><strong>Departamento:</strong> {{ solicitudSeleccionada?.departamento }}</p>
+
+            <!-- Cambiar Estado -->
+            <ion-item>
+              <ion-label>Estado:</ion-label>
+              <ion-select [(ngModel)]="solicitudSeleccionada.estado" (ionChange)="cambiarEstadoYPrioridad(solicitudSeleccionada)">
+                <ion-select-option value="Pendiente">Pendiente</ion-select-option>
+                <ion-select-option value="En curso">En curso</ion-select-option>
+                <ion-select-option value="Finalizada">Finalizada</ion-select-option>
+              </ion-select>
+            </ion-item>
+
+            <!-- Cambiar Prioridad -->
+            <ion-item [ngClass]="getPriorityClass(solicitudSeleccionada.prioridad)">
+              <ion-label>Prioridad:</ion-label>
+              <ion-select [(ngModel)]="solicitudSeleccionada.prioridad" (ionChange)="cambiarEstadoYPrioridad(solicitudSeleccionada)">
+                <ion-select-option value="Importante">Importante</ion-select-option>
+                <ion-select-option value="Medio">Medio</ion-select-option>
+                <ion-select-option value="Bajo">Bajo</ion-select-option>
+              </ion-select>
+            </ion-item>
+
+
+            <ion-button color="danger" expand="block" (click)="eliminarYRedirigir(solicitudSeleccionada)">Eliminar Solicitud</ion-button>
+
+            <div *ngIf="solicitudSeleccionada?.archivoUrl">
+              <p><strong>Archivo adjunto:</strong></p>
+              <ion-button color="primary" fill="outline" href="{{ solicitudSeleccionada?.archivoUrl }}" target="_blank">
+                Descargar Archivo
+              </ion-button>
+            </div>
+          </ion-card-content>
+        </ion-card>
+      </ion-content>
+    </ng-template>
+  </ion-modal>
+

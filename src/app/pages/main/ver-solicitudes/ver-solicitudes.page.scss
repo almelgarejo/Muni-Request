@@ -1,0 +1,189 @@
+/* Estilos generales */
+ion-header {
+  --background: #f29f05; /* Color de fondo original del header */
+  box-shadow: none; /* Remueve cualquier sombra negra que cause el fondo oscuro */
+}
+
+ion-content {
+  --background: #f4f6f9; /* Fondo claro y suave */
+  padding: 10px;
+  overflow-y: auto; /* Asegura que el contenido pueda desplazarse */
+}
+
+/* Contenedor de la lista */
+.solicitudes-list {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  padding: 0 5px;
+}
+
+/* Estilo para cada ítem de la lista */
+ion-item {
+  --background: #fff; /* Fondo blanco */
+  --border-radius: 8px; /* Bordes redondeados */
+  --box-shadow: 0px 3px 10px rgba(0, 0, 0, 0.1); /* Sombra sutil */
+  padding: 12px 16px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+ion-item:hover {
+  transform: translateY(-4px);
+  --box-shadow: 0px 6px 15px rgba(0, 0, 0, 0.2);
+}
+
+/* Estilo para el texto dentro de cada ítem */
+ion-label {
+  font-size: 16px;
+  font-weight: 500;
+  color: #34495e;
+}
+
+h2, h3 {
+  margin: 0;
+}
+
+/* Botón de "Mostrar detalles" */
+.show-details-btn {
+  color: #3498db;
+  font-size: 14px;
+  font-weight: 600;
+  background: transparent;
+  border: none;
+  text-decoration: underline;
+  cursor: pointer;
+}
+
+.show-details-btn:hover {
+  color: #2980b9;
+}
+
+/* Detalles de la solicitud */
+.solicitud-details {
+  font-size: 14px;
+  color: #7f8c8d;
+  margin-top: 15px;
+}
+
+/* Estilos para botones de acción (Eliminar, etc.) */
+ion-button {
+  --background: #2ecc71; /* Verde para acciones positivas */
+  --color: white;
+  font-size: 14px;
+  border-radius: 5px;
+  padding: 10px 15px;
+}
+
+ion-button:hover {
+  --background: #27ae60; /* Cambio a un verde más oscuro */
+}
+
+ion-button[color="danger"] {
+  --background: #e74c3c; /* Rojo para el botón de eliminación */
+}
+
+ion-button[color="danger"]:hover {
+  --background: #c0392b;
+}
+
+/* Responsividad: Asegurar que los elementos se ajusten en pantallas pequeñas */
+@media (max-width: 767px) {
+  ion-header {
+    --background: #1abc9c;
+    padding: 10px 5px;
+  }
+
+  ion-title {
+    font-size: 18px;
+  }
+
+  /* Ajustar la lista para pantallas pequeñas */
+  .solicitudes-list {
+    gap: 10px;
+    padding: 0 5px;
+  }
+
+  ion-item {
+    padding: 12px 10px; /* Menos padding en pantallas pequeñas */
+    flex-direction: column; /* Los ítems estarán apilados verticalmente */
+    align-items: flex-start;
+  }
+
+  ion-label {
+    font-size: 14px;
+  }
+
+  .show-details-btn {
+    font-size: 12px;
+  }
+
+  /* Detalles en pantallas pequeñas */
+  .solicitud-details {
+    font-size: 12px;
+    margin-top: 10px;
+  }
+}
+
+/* Colores por prioridad */
+.prioridad-alta {
+  background-color: #f28b82; /* Rojo claro para "Importante" */
+  color: rgb(8, 8, 8); /* Texto blanco para contraste */
+}
+
+.prioridad-media {
+  background-color: #fbbc04; /* Amarillo para "Medio" */
+  color: black; /* Texto negro para contraste */
+}
+
+.prioridad-baja {
+  background-color: #ccff90; /* Verde claro para "Bajo" */
+  color: black; /* Texto negro para contraste */
+}
+
+.sin-prioridad {
+  background-color: #e0e0e0; /* Gris para "Sin prioridad asignada" */
+  color: black; /* Texto negro para contraste */
+}
+
+/* Aseguramos que todo el contenido interno herede el color */
+ion-item.prioridad-alta ion-label,
+ion-item.prioridad-media ion-label,
+ion-item.prioridad-baja ion-label,
+ion-item.sin-prioridad ion-label {
+  color: inherit; /* El texto hereda el color de la prioridad */
+}
+
+/* Botones y texto dentro del ion-item */
+ion-item.prioridad-alta ion-button,
+ion-item.prioridad-media ion-button,
+ion-item.prioridad-baja ion-button,
+ion-item.sin-prioridad ion-button {
+  color: inherit; /* Asegura que los botones sean legibles */
+}
+/* Ajustes para el botón "Detalles" */
+.boton-detalles {
+  --background: #007bff; /* Azul intenso para el fondo */
+  --background-hover: #0056b3; /* Azul más oscuro al pasar el mouse */
+  --color: white; /* Texto blanco */
+  border: none; /* Elimina el rectángulo (borde) del botón */
+  border-radius: 5px; /* Mantiene los bordes redondeados */
+  font-weight: bold; /* Hace el texto más llamativo */
+  padding: 0.5rem 1rem; /* Ajusta el tamaño del botón */
+}
+
+.boton-detalles:hover {
+  --background: var(--background-hover); /* Aplica el azul más oscuro al pasar el mouse */
+}
+.header-amarillo {
+  background-color: yellow;
+}
+:root {
+  --ion-color-yellow: #FFD700;
+  --ion-color-yellow-contrast: #000000;
+  --ion-color-yellow-shade: #E6C200;
+  --ion-color-yellow-tint: #FFE733;
+}

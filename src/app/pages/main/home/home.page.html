@@ -1,0 +1,100 @@
+<app-header [showMenu]="true" title="Inicio"></app-header>
+
+<ion-content>
+  <!-- Ion Refresher para refrescar la página -->
+  <ion-refresher slot="fixed" (ionRefresh)="doRefresh($event)">
+    <ion-refresher-content
+      pullingIcon="chevron-down-circle-outline"
+      pullingText="Desliza hacia abajo para refrescar"
+      refreshingSpinner="circles"
+    >
+    </ion-refresher-content>
+  </ion-refresher>
+
+  <!-- Sección de solicitudes pendientes -->
+  <h2>Solicitudes Pendientes</h2>
+  <div class="swiper-container">
+    <div class="swiper-wrapper">
+      <div class="swiper-slide" *ngFor="let solicitud of solicitudesPendientes">
+        <ion-card>
+          <ion-card-header>
+            <ion-card-title>{{ solicitud.nombre }}</ion-card-title>
+            <ion-card-subtitle>RUT: {{ solicitud.rut }}</ion-card-subtitle>
+          </ion-card-header>
+          <ion-card-content>
+            <p><strong>Descripción:</strong> {{ solicitud.descripcion }}</p>
+            <p>
+              <strong>Fecha:</strong> {{ solicitud.fecha.toDate() | date:'short'
+              }}
+            </p>
+          </ion-card-content>
+        </ion-card>
+      </div>
+    </div>
+  </div>
+
+  <!-- Sección de solicitudes en curso -->
+  <h2>Solicitudes en Curso</h2>
+  <div class="swiper-container">
+    <div class="swiper-wrapper">
+      <div class="swiper-slide" *ngFor="let solicitud of solicitudesEnCurso">
+        <ion-card>
+          <ion-card-header>
+            <ion-card-title>{{ solicitud.nombre }}</ion-card-title>
+            <ion-card-subtitle>RUT: {{ solicitud.rut }}</ion-card-subtitle>
+          </ion-card-header>
+          <ion-card-content>
+            <p><strong>Descripción:</strong> {{ solicitud.descripcion }}</p>
+            <p>
+              <strong>Fecha:</strong> {{ solicitud.fecha.toDate() | date:'short'
+              }}
+            </p>
+          </ion-card-content>
+        </ion-card>
+      </div>
+    </div>
+  </div>
+
+  <!-- Sección de solicitudes en curso -->
+  <h2>Solicitudes Finalizadas</h2>
+  <div class="swiper-container">
+    <div class="swiper-wrapper">
+      <div class="swiper-slide" *ngFor="let solicitud of solicitudesFinalizadas">
+        <ion-card>
+          <ion-card-header>
+            <ion-card-title>{{ solicitud.nombre }}</ion-card-title>
+            <ion-card-subtitle>RUT: {{ solicitud.rut }}</ion-card-subtitle>
+          </ion-card-header>
+          <ion-card-content>
+            <p><strong>Descripción:</strong> {{ solicitud.descripcion }}</p>
+            <p>
+              <strong>Fecha:</strong> {{ solicitud.fecha.toDate() | date:'short'
+              }}
+            </p>
+          </ion-card-content>
+        </ion-card>
+      </div>
+    </div>
+  </div>  
+
+  <ion-img
+  src="assets/imgs/muni_zapallar.png"
+  alt=""
+  class="small-img">
+  </ion-img>
+
+  <!-- Botón para Agregar Solicitud -->
+  <ion-fab
+    vertical="bottom"
+    horizontal="end"
+    slot="fixed"
+    *ngIf="userRole !== 'Técnico'"
+  >
+    <ion-fab-button
+      (click)="navigateToRegistrarSolicitud()"
+      class="custom-fab-button"
+    >
+      <ion-icon name="add"></ion-icon>
+    </ion-fab-button>
+  </ion-fab>
+</ion-content>

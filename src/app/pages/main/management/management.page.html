@@ -1,0 +1,132 @@
+<app-header backButton="/auth" title="Gestión de Usuarios"></app-header>
+
+<ion-content>
+  <div class="container">
+    <!-- Formulario centrado -->
+    <div class="form-container">
+      <h2>Crear Usuario</h2>
+      <form [formGroup]="form" (ngSubmit)="submit()">
+        <!-- Correo -->
+        <div class="input-row">
+          <label>Correo</label>
+          <input
+            type="text"
+            formControlName="email"
+            placeholder="Ingrese correo"
+          />
+          <div
+            *ngIf="form.controls.email.errors && form.controls.email.touched"
+            class="validators"
+          >
+            <span *ngIf="form.controls.email.errors?.['required']">
+              El correo es requerido
+            </span>
+            <span *ngIf="form.controls.email.errors?.['email']">
+              Ingrese un correo válido
+            </span>
+          </div>
+        </div>
+
+        <!-- Nombre -->
+        <div class="input-row">
+          <label>Nombre y Apellido</label>
+          <input
+            type="text"
+            formControlName="name"
+            placeholder="Ingrese nombre"
+          />
+          <div
+            *ngIf="form.controls.name.errors && form.controls.name.touched"
+            class="validators"
+          >
+            <span *ngIf="form.controls.name.errors?.['required']">
+              El nombre es requerido
+            </span>
+            <span *ngIf="form.controls.name.errors?.['minlength']">
+              El nombre debe tener al menos 4 caracteres
+            </span>
+          </div>
+        </div>
+
+        <!-- Contraseña -->
+        <div class="input-row password-row">
+          <label>Contraseña</label>
+          <div class="password-container">
+            <input
+              [type]="showPassword ? 'text' : 'password'"
+              formControlName="password"
+              [value]="generatedPassword"
+              placeholder="Ingrese contraseña"
+            />
+            <ion-icon
+              [name]="showPassword ? 'eye-off' : 'eye'"
+              (click)="togglePasswordVisibility()"
+              class="toggle-password-icon"
+            ></ion-icon>
+          </div>
+        </div>
+
+        <button
+          type="button"
+          class="btn btn-generate"
+          (click)="generateRandomPassword()"
+        >
+          Generar Contraseña
+        </button>
+
+        <!-- Rol -->
+        <div class="input-row">
+          <label>Rol</label>
+          <select formControlName="perfil">
+            <option value="Solicitante">Solicitante</option>
+            <option value="Admin">Admin</option>
+            <option value="Técnico">Técnico</option>
+          </select>
+        </div>
+
+        <button
+          class="btn btn-create"
+          type="submit"
+          [disabled]="form.invalid"
+        >
+          Crear Usuario
+        </button>
+      </form>
+    </div>
+  </div>
+<!-- Listado de Usuarios -->
+<div class="user-section list-section">
+  <h2>Listado de Usuarios</h2>
+  <ul class="user-list">
+    <li *ngFor="let user of users">
+      <div class="user-info">
+        <span class="user-name">{{ user.name }}</span>
+        <span class="user-email">{{ user.email }}</span>
+      </div>
+      <div class="user-actions">
+        <button class="modify-btn" (click)="selectUser(user)">Modificar</button>
+        <button class="delete-btn" (click)="confirmDeleteUser(user)">Eliminar</button>
+      </div>
+    </li>
+  </ul>
+</div>
+
+<!-- Modificar Usuario -->
+<div *ngIf="selectedUser" class="user-section edit-section">
+  <h2>Modificar Usuario</h2>
+  <div class="input-row">
+    <label>Correo</label>
+    <input type="text" [(ngModel)]="selectedUser.email" />
+  </div>
+  <div class="input-row">
+    <label>Nombre</label>
+    <input type="text" [(ngModel)]="selectedUser.name" />
+  </div>
+  <button (click)="saveChanges()" class="btn btn-save">
+    Guardar Cambios
+  </button>
+</div>
+
+</ion-content>
+
+

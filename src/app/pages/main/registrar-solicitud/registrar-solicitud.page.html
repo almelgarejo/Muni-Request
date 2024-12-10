@@ -1,0 +1,101 @@
+<ion-header>
+  <ion-toolbar style="--background: #F29F05;">
+    <ion-buttons slot="start">
+      <ion-button (click)="volverAtras()">
+        <ion-icon slot="icon-only" name="arrow-back" style="color: white;"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+    <ion-title class="text-center" style="color: white;">Registrar Solicitud</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="ion-padding">
+
+  <div class="form-container">
+    <form (ngSubmit)="enviarSolicitud(form)" #form="ngForm" class="form-content">
+
+      <!-- Campo Descripción -->
+      <ion-item lines="none">
+        <ion-label position="stacked">Descripción del Problema</ion-label>
+        <ion-textarea [(ngModel)]="descripcion" name="descripcion" required rows="4" #descripcionField="ngModel" minlength="20"></ion-textarea>
+  
+        <!-- Alerta para campo obligatorio -->
+        <ion-note *ngIf="descripcionField.invalid && descripcionField.touched && !descripcionField.errors?.['minlength']" color="danger">
+          Este campo es obligatorio.
+        </ion-note>
+        
+        <!-- Alerta para longitud mínima de caracteres -->
+        <ion-note *ngIf="descripcionField.errors?.['minlength'] && descripcionField.touched" color="danger">
+          La descripción debe tener al menos 20 caracteres.
+        </ion-note>
+      </ion-item>
+
+
+
+      <!-- Campo Nombre -->
+      <ion-item lines="none">
+        <ion-label position="stacked">Nombre del Solicitante</ion-label>
+        <ion-input type="text" [(ngModel)]="nombre" name="nombre" required [disabled]="true" #nombreField="ngModel"></ion-input>
+        <ion-note *ngIf="nombreField.invalid && nombreField.touched" color="danger">
+          Este campo es obligatorio.
+        </ion-note>
+      </ion-item>
+
+      <!-- Campo RUT -->
+      <ion-item lines="none">
+        <ion-label position="stacked">RUT del Solicitante</ion-label>
+        <ion-input 
+          type="text" 
+          [(ngModel)]="rut" 
+          name="rut" 
+          required 
+          (ionInput)="formatRut($event)" 
+          #rutField="ngModel"
+        ></ion-input>
+        <ion-note *ngIf="rutInvalido && rutField.touched" color="danger">
+          El RUT ingresado no es válido.
+        </ion-note>
+      </ion-item>
+
+      <!-- Campo Departamentos -->
+      <ion-item>
+        <ion-label position="stacked">Departamento</ion-label>
+        <ion-select [(ngModel)]="departamento" name="departamento" placeholder="Selecciona un departamento" required>
+          <ion-select-option *ngFor="let depto of departamentos" [value]="depto">
+            {{ depto }}
+          </ion-select-option>
+        </ion-select>
+      </ion-item>      
+      
+
+      <!-- Campo Localidad -->
+      <ion-item lines="none">
+        <ion-label position="stacked">Localidad</ion-label>
+        <ion-select [(ngModel)]="localidad" name="localidad" required #localidadField="ngModel" placeholder="Seleccione una Localidad">
+          <ion-select-option value="Zapallar">Zapallar</ion-select-option>
+          <ion-select-option value="Cachagua">Cachagua</ion-select-option>
+          <ion-select-option value="La Laguna">La Laguna</ion-select-option>
+          <ion-select-option value="Catapilco">Catapilco</ion-select-option>
+          <ion-select-option value="El Blanquillo">El Blanquillo</ion-select-option>
+          <ion-select-option value="La Hacienda">La Hacienda</ion-select-option>
+        </ion-select>
+        <ion-note *ngIf="localidadField.invalid && localidadField.touched" color="danger">
+          Debe seleccionar una localidad.
+        </ion-note>
+      </ion-item>
+
+      <!-- Campo Adjuntar Archivo -->
+      <ion-item lines="none">
+        <ion-label position="stacked">Adjuntar Archivo</ion-label>
+        <input type="file" (change)="onFileSelected($event)" />
+      </ion-item>
+
+      <!-- Botón Registrar -->
+      <ion-button expand="full" type="submit" style="--background: #93a218;" [disabled]="form.invalid">
+        Registrar Solicitud
+      </ion-button>
+
+    </form>
+  </div>
+
+</ion-content>
